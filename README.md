@@ -8,7 +8,7 @@ Copy `.env` from `.env.example` and fill in secrets.
 
 Beam is at http://127.0.0.1:8080/beam.
 
-Conference walkthroughs are in [docs/demo-flows.md](docs/demo-flows.md). With the workspace gateway running:
+Netlify hosting for the workspace site is in [docs/netlify.md](docs/netlify.md). Conference walkthroughs are in [docs/demo-flows.md](docs/demo-flows.md). With the workspace gateway running:
 
 - SEO research: `/seo/research`
 - SEO audit log: `/seo/audit-log`
