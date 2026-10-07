@@ -26,6 +26,7 @@ import {
 } from "../drizzle/schema";
 import { db } from "../server/db";
 import { DEMO_WORKSPACE_SLUG } from "../server/workspace";
+import { seedSundriftProductIssues } from "../server/sundrift-product-dev";
 
 type StatusSeed = {
   name: string;
@@ -809,13 +810,16 @@ export default defineAction({
       },
     ]);
 
+    const productDev = await seedSundriftProductIssues();
+
     return {
       seeded: true,
       workspace: workspace.name,
       teams: teamRows.length,
       members: memberRows.length,
-      issues: insertedIssues.length,
+      issues: insertedIssues.length + productDev.tickets.filter((ticket) => ticket.created).length,
       projects: projectRows.length,
+      productDev,
     };
   },
 });

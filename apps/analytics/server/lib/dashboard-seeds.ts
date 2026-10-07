@@ -6,6 +6,7 @@ import firstPartyTemplateTrafficSeed from "../../seeds/dashboards/agent-native-t
 import googleAnalyticsSeed from "../../seeds/dashboards/google-analytics.json" with { type: "json" };
 import nodeExporterFullSeed from "../../seeds/dashboards/node-exporter-full.json" with { type: "json" };
 import skillsCliFunnelSeed from "../../seeds/dashboards/skills-cli-funnel.json" with { type: "json" };
+import sundriftProductTrafficSeed from "../../seeds/dashboards/sundrift-product-traffic.json" with { type: "json" };
 
 const shippedSeeds: Record<string, Record<string, unknown>> = {
   "agent-native-templates-first-party": firstPartyTemplateTrafficSeed as Record<
@@ -15,6 +16,7 @@ const shippedSeeds: Record<string, Record<string, unknown>> = {
   "google-analytics": googleAnalyticsSeed as Record<string, unknown>,
   "node-exporter-full": nodeExporterFullSeed as Record<string, unknown>,
   "skills-cli-funnel": skillsCliFunnelSeed as Record<string, unknown>,
+  "sundrift-product-traffic": sundriftProductTrafficSeed as Record<string, unknown>,
 };
 
 function cloneSeed(seed: Record<string, unknown>): Record<string, unknown> {

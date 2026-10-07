@@ -1,0 +1,74 @@
+{
+  "name": "Sundrift product traffic",
+  "description": "Seeded 180-day sessions, conversion, and AOV for Sundrift travel products. Constant values for the conference demo. Not a live analytics ingest.",
+  "columns": 3,
+  "panels": [
+    {
+      "id": "sundrift-weekender-sessions",
+      "title": "The Weekender sessions",
+      "chartType": "metric",
+      "source": "first-party",
+      "width": 1,
+      "sql": "SELECT 9421 AS sessions",
+      "config": {
+        "yKey": "sessions",
+        "yFormatter": "number",
+        "description": "Seeded last 180 days"
+      }
+    },
+    {
+      "id": "sundrift-weekender-conversion",
+      "title": "The Weekender conversion",
+      "chartType": "metric",
+      "source": "first-party",
+      "width": 1,
+      "sql": "SELECT 4.52 AS conversion_pct",
+      "config": {
+        "yKey": "conversion_pct",
+        "yFormatter": "percent",
+        "description": "Seeded conversion rate"
+      }
+    },
+    {
+      "id": "sundrift-weekender-aov",
+      "title": "The Weekender AOV",
+      "chartType": "metric",
+      "source": "first-party",
+      "width": 1,
+      "sql": "SELECT 52.37 AS aov",
+      "config": {
+        "yKey": "aov",
+        "yFormatter": "currency",
+        "description": "Seeded average order value"
+      }
+    },
+    {
+      "id": "sundrift-sessions-by-product",
+      "title": "Sessions by product",
+      "chartType": "bar",
+      "source": "first-party",
+      "width": 2,
+      "sql": "SELECT product, sessions FROM (VALUES ('The Weekender'::text, 9421), ('Packing cubes', 14880), ('Linen travel shirts', 4102), ('Care+ lounge', 1860), ('The Drift Carry-On', 6204), ('The Coast Tote', 5330)) AS metrics(product, sessions) ORDER BY sessions DESC",
+      "config": {
+        "xKey": "product",
+        "yKey": "sessions",
+        "yFormatter": "number",
+        "description": "Seeded sessions, last 180 days"
+      }
+    },
+    {
+      "id": "sundrift-revenue-by-product",
+      "title": "Revenue by product",
+      "chartType": "bar",
+      "source": "first-party",
+      "width": 2,
+      "sql": "SELECT product, round(sessions * conversion_pct / 100.0 * aov, 2) AS revenue FROM (VALUES ('The Weekender'::text, 9421::float8, 4.52::float8, 52.37::float8), ('Packing cubes', 14880, 3.10, 28.00), ('Linen travel shirts', 4102, 3.80, 68.00), ('Care+ lounge', 1860, 6.90, 24.00), ('The Drift Carry-On', 6204, 2.40, 198.00), ('The Coast Tote', 5330, 3.40, 86.00)) AS metrics(product, sessions, conversion_pct, aov) ORDER BY revenue DESC",
+      "config": {
+        "xKey": "product",
+        "yKey": "revenue",
+        "yFormatter": "currency",
+        "description": "Seeded sessions x conversion x AOV"
+      }
+    }
+  ]
+}
