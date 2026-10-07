@@ -81,7 +81,9 @@ new read action, or a bespoke renderer.
 | `mark-all-notifications-read` | Clears the current member's unread count. |
 | `update-issue-subscription` | Subscribe or unsubscribe a member from an issue's notifications. |
 | `search-workspace` | Text search across issues, projects, cycles, saved views and members. Use it to *find* a record; use `list-issues` to *build a view*. |
-| `seed-demo-data` | Hidden from the model; `pnpm action seed-demo-data [--force]`. |
+| `seed-demo-data` | Hidden from the model; `pnpm action seed-demo-data [--force]`. Also adds the Sundrift loyalty, packing AI, and returns tickets when the workspace is created. |
+| `seed-sundrift-product-dev` | Idempotent Sundrift product tickets. Use this when the demo workspace already exists. |
+| `list-sundrift-product-dev` | Read those three tickets and their issue paths. |
 
 Identity is one `members` table with `kind: human | agent`, so an agent is
 assignable anywhere a person is. Auth is disabled; the first human member acts

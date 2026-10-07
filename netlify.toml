@@ -1,0 +1,55 @@
+# Workspace Netlify site for Sundrift.
+# Adapted from the ecom demo root netlify.toml. Netlify builds this file;
+# the per-app netlify.toml files stay for a standalone app deploy.
+#
+# Apps discovered from apps/*/package.json:
+#   analytics, assets, beam, brain, calendar, campaign-planner, chat, clips,
+#   content, design, dispatch, forms, mail, plan, seo, slides
+#
+# `agent-native deploy` builds every app. The release-migration loop runs
+# migrate:production only where that script exists (Beam does not have one).
+
+[build]
+command = """
+set -eu
+export DATABASE_URL="${NETLIFY_DATABASE_URL:-${DATABASE_URL:-}}"
+if [ -z "$DATABASE_URL" ]; then
+  echo "DATABASE_URL is empty. Connect the Neon extension so NETLIFY_DATABASE_URL is set, or set DATABASE_URL on the Netlify site."
+  exit 1
+fi
+pnpm install --frozen-lockfile
+pnpm exec agent-native deploy --preset netlify --build-only
+if [ "${CONTEXT:-}" = "production" ] || [ "${AGENT_NATIVE_RUN_RELEASE_MIGRATIONS:-}" = "1" ]; then
+  MIGRATION_DATABASE_URL="${NETLIFY_DATABASE_URL_UNPOOLED:-$DATABASE_URL}"
+  for app_dir in apps/*; do
+    [ -f "$app_dir/package.json" ] || continue
+    app=$(basename "$app_dir")
+    if ! grep -q '"migrate:production"' "$app_dir/package.json"; then
+      echo "release migrations: skip $app (no migrate:production script)"
+      continue
+    fi
+    echo "release migrations: $app"
+    DATABASE_URL="$MIGRATION_DATABASE_URL" pnpm --filter "$app" migrate:production
+  done
+fi
+"""
+publish = "dist"
+functions = ".netlify/functions-internal"
+
+[build.environment]
+NODE_VERSION = "22"
+NITRO_PRESET = "netlify"
+NPM_CONFIG_PRODUCTION = "false"
+
+[context.production.environment]
+AGENT_NATIVE_HOSTED_HARNESS = "true"
+AGENT_CHAT_DURABLE_BACKGROUND = "true"
+# Production release migrations own schema setup. Request functions must skip
+# migration probes on every serverless invocation.
+AGENT_NATIVE_RELEASE_MIGRATIONS = "1"
+
+# Five minutes. Agent loops and cross-app calls need more than the 75s
+# single-app template default. Keep AGENT_RUN_SOFT_TIMEOUT_MS below this
+# if you set it in the site environment.
+[functions."*"]
+timeout = 300

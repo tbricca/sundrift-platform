@@ -970,6 +970,21 @@ export const dashboardCatalogEntries: DashboardCatalogEntry[] = [
     buildConfig: () => seedConfig("skills-cli-funnel"),
   },
   {
+    id: "sundrift-product-traffic",
+    name: "Sundrift product traffic",
+    description:
+      "Seeded 180-day sessions, conversion, AOV, and revenue for Sundrift travel products used by Campaign Planner.",
+    category: "Product",
+    defaultDashboardId: "sundrift-product-traffic",
+    dataSources: ["first-party"],
+    tags: ["sundrift", "sessions", "conversion", "aov", "demo", "travel"],
+    panelCount: 5,
+    version: CATALOG_VERSION,
+    recommended: true,
+    visibleInCatalog: true,
+    buildConfig: () => seedConfig("sundrift-product-traffic"),
+  },
+  {
     id: "google-analytics-web",
     name: "Google Analytics Website",
     description:
