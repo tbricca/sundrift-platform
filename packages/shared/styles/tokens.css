@@ -1,0 +1,12 @@
+/*
+ * Sundrift accents for a later public storefront.
+ * Agent Native semantic tokens (--background, --foreground, --primary, …)
+ * stay as the framework defined them. Do not map these onto app chrome.
+ */
+
+:root {
+  --sundrift-accent: 32 72% 42%;
+  --sundrift-accent-foreground: 40 40% 98%;
+  --sundrift-sea: 196 42% 28%;
+  --sundrift-tint: 38 42% 96%;
+}

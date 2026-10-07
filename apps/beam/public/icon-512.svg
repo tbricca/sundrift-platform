@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="beamTile512" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#6d6afe" />
+      <stop offset="1" stop-color="#8b5cf6" />
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="15" fill="url(#beamTile512)" />
+  <g fill="#ffffff">
+    <path d="M25 16h19l-6 10H19z" />
+    <path d="M21 29h19l-6 10H15z" />
+    <path d="M17 42h19l-6 10H11z" opacity="0.62" />
+  </g>
+</svg>

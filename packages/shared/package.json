@@ -1,0 +1,39 @@
+{
+  "name": "@sundrift/shared",
+  "version": "0.0.0",
+  "private": true,
+  "files": [
+    "dist",
+    "src",
+    "styles",
+    "AGENTS.md"
+  ],
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "development": "./src/index.ts",
+      "default": "./dist/index.js"
+    },
+    "./server": {
+      "types": "./src/server/index.ts",
+      "development": "./src/server/index.ts",
+      "default": "./dist/server/index.js"
+    },
+    "./client": {
+      "types": "./src/client/index.ts",
+      "development": "./src/client/index.ts",
+      "default": "./dist/client/index.js"
+    },
+    "./styles/tokens.css": "./styles/tokens.css"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch --preserveWatchOutput",
+    "typecheck": "tsc --noEmit",
+    "prepare": "tsc"
+  },
+  "devDependencies": {
+    "typescript-7": "catalog:"
+  }
+}

@@ -1,0 +1,134 @@
+/* Self-hosted via @fontsource-variable/inter — no render-blocking Google Fonts request */
+@import "@fontsource-variable/inter";
+
+@import "tailwindcss";
+@import "@agent-native/toolkit/styles.css";
+@import "@sundrift/shared/styles/tokens.css";
+
+@source "./**/*.{ts,tsx}";
+
+:root {
+  --background: 0 0% 100%;
+  --foreground: 230 18% 12%;
+  --card: 0 0% 100%;
+  --card-foreground: 230 18% 12%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 230 18% 12%;
+  --primary: 243 75% 62%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 235 20% 96%;
+  --secondary-foreground: 230 18% 20%;
+  --muted: 235 20% 96%;
+  --muted-foreground: 232 9% 46%;
+  --accent: 240 30% 95%;
+  --accent-foreground: 243 55% 32%;
+  --destructive: 358 72% 54%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 232 18% 91%;
+  --input: 232 18% 89%;
+  --ring: 243 75% 62%;
+  --radius: 0.5rem;
+  --sidebar-background: 240 24% 98%;
+  --sidebar-foreground: 232 10% 38%;
+  --sidebar-primary: 243 75% 62%;
+  --sidebar-primary-foreground: 0 0% 100%;
+  --sidebar-accent: 240 26% 94%;
+  --sidebar-accent-foreground: 230 20% 16%;
+  --sidebar-border: 232 18% 91%;
+  --sidebar-ring: 243 75% 62%;
+
+  --priority-urgent: 358 72% 54%;
+  --priority-high: 25 90% 50%;
+  --priority-medium: 40 92% 47%;
+  --priority-low: 220 9% 55%;
+  --priority-none: 232 8% 66%;
+
+  --status-backlog: 232 8% 60%;
+  --status-unstarted: 227 12% 46%;
+  --status-started: 40 92% 47%;
+  --status-completed: 142 62% 42%;
+  --status-canceled: 232 8% 60%;
+}
+
+.dark {
+  --background: 232 14% 9%;
+  --foreground: 230 18% 92%;
+  --card: 232 14% 11%;
+  --card-foreground: 230 18% 92%;
+  --popover: 232 14% 12%;
+  --popover-foreground: 230 18% 92%;
+  --primary: 245 80% 70%;
+  --primary-foreground: 232 30% 10%;
+  --secondary: 232 12% 16%;
+  --secondary-foreground: 230 18% 92%;
+  --muted: 232 12% 15%;
+  --muted-foreground: 232 9% 60%;
+  --accent: 240 18% 19%;
+  --accent-foreground: 240 40% 88%;
+  --destructive: 358 68% 58%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 232 10% 20%;
+  --input: 232 10% 22%;
+  --ring: 245 80% 70%;
+  --radius: 0.5rem;
+  --sidebar-background: 232 15% 7%;
+  --sidebar-foreground: 232 9% 62%;
+  --sidebar-primary: 245 80% 70%;
+  --sidebar-primary-foreground: 232 30% 10%;
+  --sidebar-accent: 232 12% 15%;
+  --sidebar-accent-foreground: 230 18% 92%;
+  --sidebar-border: 232 10% 17%;
+  --sidebar-ring: 245 80% 70%;
+
+  --priority-urgent: 358 72% 62%;
+  --priority-high: 25 88% 58%;
+  --priority-medium: 40 90% 55%;
+  --priority-low: 220 9% 62%;
+  --priority-none: 232 8% 46%;
+
+  --status-backlog: 232 8% 52%;
+  --status-unstarted: 227 10% 60%;
+  --status-started: 40 90% 55%;
+  --status-completed: 142 55% 50%;
+  --status-canceled: 232 8% 48%;
+}
+
+@layer base {
+  body {
+    @apply bg-background text-foreground;
+    font-family: "Inter Variable", "Inter", sans-serif;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+@layer components {
+  /* Dense row rhythm shared by the list, board cards and property rails. */
+  .beam-row {
+    @apply flex h-9 items-center gap-2 border-b border-border/70 px-3 text-[13px];
+  }
+  .beam-row:hover {
+    @apply bg-muted/60;
+  }
+  .beam-meta {
+    @apply text-[11px] font-medium tabular-nums text-muted-foreground;
+  }
+  .beam-chip {
+    @apply inline-flex h-5 items-center gap-1 rounded-full border border-border px-2 text-[11px] font-medium text-muted-foreground;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--border));
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--muted-foreground) / 0.4);
+}

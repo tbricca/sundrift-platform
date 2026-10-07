@@ -1,0 +1,3 @@
+DROP INDEX "notifications_user_created_idx";--> statement-breakpoint
+CREATE INDEX "notifications_inbox_idx" ON "notifications" USING btree ("user_id","created_at" DESC NULLS LAST) WHERE "notifications"."deleted_at" is null;--> statement-breakpoint
+CREATE INDEX "notifications_unread_idx" ON "notifications" USING btree ("user_id") WHERE "notifications"."deleted_at" is null and "notifications"."read_at" is null;

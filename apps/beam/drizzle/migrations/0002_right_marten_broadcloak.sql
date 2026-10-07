@@ -1,0 +1,2 @@
+ALTER TABLE "saved_views" ADD COLUMN "updated_at" timestamp with time zone DEFAULT now() NOT NULL;--> statement-breakpoint
+CREATE UNIQUE INDEX "favorites_unique_idx" ON "favorites" USING btree ("user_id","entity_type","entity_id");
