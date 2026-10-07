@@ -13,10 +13,18 @@ export default defineAction({
   parallelSafe: true,
   run: async () => {
     const campaigns = await listCampaigns();
+    const statusCounts = {
+      reviewing: campaigns.filter((campaign) => campaign.workflowStatus === "reviewing")
+        .length,
+      deployed: campaigns.filter((campaign) => campaign.stages.deploy).length,
+      completed: campaigns.filter((campaign) => campaign.status === "complete").length,
+    };
     return {
       campaigns,
       products: DEMO_PRODUCTS,
+      total: campaigns.length,
       count: campaigns.length,
+      statusCounts,
       summary: `${campaigns.length} campaigns are seeded.`,
     };
   },

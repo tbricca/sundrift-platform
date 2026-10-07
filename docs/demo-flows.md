@@ -12,9 +12,9 @@ The Beam demo workspace keeps the slug `northwind` so the existing seed still lo
 
 **Sample prompts and actions:**
 
-- Open `/seo/research`.
-- Leave the linen travel shirts request, or type `weekender bags` / `packing cubes`, and press Start research.
-- Agent: "Get the linen travel shirts research" → `get-research` with `research_linen_travel_shirts`.
+- Open `/seo` or `/seo/research`. Dispatch home is `/research`, so it does not open Agent chat.
+- The form starts empty, matching the ecom demo. Type `linen travel shirts` (or `weekender bags` / `packing cubes`) and press Start research. Country codes are United States, Canada, and Mexico.
+- Agent: "Get the linen travel shirts research" → `get-research` or `get-research-request` with `research_linen_travel_shirts`. `create-research-request` and `list-opportunity-reports` are the ecom-demo action names.
 - On the report, Answer this SEO request opens the agent sidebar. Save response writes locally.
 
 **Mocked:** Volume, keyword difficulty, related terms, and the SERP snapshot (Harbor Supply, Northline Travel, Fieldnote Co.) come from the Sundrift catalog. `AHREFS_API_KEY` can be stored and is not called.
@@ -47,7 +47,9 @@ The Beam demo workspace keeps the slug `northwind` so the existing seed still lo
 
 **Sample prompts and actions:**
 
-- Open `/campaign-planner/campaign/campaign_weekender_midwest`.
+- Open `/campaign-planner` or `/campaign-planner/campaigns`. The list is the planning checklist from the ecom demo: market research, financial model, brand messaging, SEO, prototypes, design, and deploy. Seeded rows have the financial model and SEO marks filled. Market research, messaging, prototypes, design, and deploy stay open.
+- New campaign collects a name, keywords, and description, then `create-campaign` attaches the closest catalog product and opens the simulator. Lifts start at zero.
+- Open `/campaign-planner/campaign/campaign_weekender_midwest` for the hero simulator.
 - Baseline: 9,421 sessions, 4.52% conversion, $52.37 AOV, last 180 days.
 - Default lifts: sessions +12.4%, conversion +1.6 percentage points, AOV +3.9%. Simulated point: 10,589 sessions, 6.12%, $54.41.
 - Move a slider. The page updates immediately and saves the lifts.
@@ -93,6 +95,25 @@ Also seeded: packing cubes and Drift Carry-On campaigns, from `/campaign-planner
 **Mocked:** Every panel is a constant SQL snapshot. Nothing is ingested from a browser or Ahrefs.
 
 **Live:** The Analytics shell rendering that shipped dashboard.
+
+## Still not in this workspace
+
+The live ecom demo (`agent-native-ecomm-demo.netlify.app`) also mounts these apps. The private source repo could not be cloned from this environment, so they are not copied yet:
+
+- **Market Research** (`/market-research`) — competitor positioning search. Sundrift has no equivalent.
+- **Demo Mode** (`/demo-mode`) — re-seed workspace data and show which rows the signed-in user can read.
+- **Product Walkthrough** (`/product-walkthrough`) — authored spotlight tours. SEO research inputs already use `data-tour` anchors so a later tour can attach.
+
+Bulk delete on the campaign checklist is not wired. The three seeded campaigns are restored whenever the list loads, so a delete would come back.
+
+Still stubbed inside the apps that are here:
+
+- Live Ahrefs. `generate-request-research` returns the catalog report and does not call the network. `AHREFS_API_KEY` can be stored.
+- Live Gmail. Mailbox rows are seeded. Email send is a mailto draft.
+- Slack delivery. The audit log returns the body and does not post.
+- Live Analytics event ingest. The product dashboard is a constant SQL snapshot. Analytics home is `/ask`, matching the ecom demo.
+- Market-research stage on a campaign. The checklist mark stays incomplete.
+- Agent-written suggested responses. Catalog text is prewritten. Answer this SEO request is the live model path.
 
 ## Catalog
 

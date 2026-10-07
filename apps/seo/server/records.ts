@@ -29,6 +29,9 @@ export function presentResearch(row: ResearchRow) {
     suggestedResponse: row.suggestedResponse,
     fullReport: row.fullReport,
     productId: row.productId,
+    summary: row.request,
+    createdAt: row.updatedAt,
+    reportKind: "full" as const,
     urlPath: `/reports/${row.id}`,
     updatedAt: row.updatedAt,
   };

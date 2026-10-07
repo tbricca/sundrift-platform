@@ -12,6 +12,9 @@ export const campaignPlans = table("campaign_plans", {
   status: text("status").notNull().default("active"),
   comparableLabel: text("comparable_label").notNull().default(""),
   notes: text("notes").notNull().default(""),
+  category: text("category").notNull().default("Travel"),
+  campaignKeywords: text("campaign_keywords").notNull().default(""),
+  description: text("description").notNull().default(""),
   createdAt: text("created_at").notNull(),
   updatedAt: text("updated_at").notNull(),
 });

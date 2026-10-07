@@ -70,6 +70,8 @@ export type DemoCampaign = {
   status: "active" | "complete";
   comparableLabel: string;
   notes: string;
+  category: string;
+  campaignKeywords: string;
 };
 
 export type DemoProductDevStory = {
@@ -313,6 +315,8 @@ export const DEMO_CAMPAIGNS: DemoCampaign[] = [
     comparableLabel: "Weekenders — Long Weekend Layering — Midwest",
     notes:
       "Hero case. Baseline is the seeded Weekender snapshot for the last 180 days.",
+    category: "Bags",
+    campaignKeywords: "weekender bag",
   },
   {
     id: "campaign_packing_cubes",
@@ -326,6 +330,8 @@ export const DEMO_CAMPAIGNS: DemoCampaign[] = [
     status: "active",
     comparableLabel: "Packing cubes — spring organization push",
     notes: "Secondary campaign. Same window, smaller lift.",
+    category: "Organization",
+    campaignKeywords: "packing cubes",
   },
   {
     id: "campaign_drift_carry_on",
@@ -339,6 +345,8 @@ export const DEMO_CAMPAIGNS: DemoCampaign[] = [
     status: "active",
     comparableLabel: "Drift Carry-On — bin-size education",
     notes: "Spinner story. Higher AOV, lower session base.",
+    category: "Bags",
+    campaignKeywords: "carry-on luggage",
   },
 ];
 

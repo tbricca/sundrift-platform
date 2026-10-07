@@ -41,6 +41,7 @@ function routeOwnsToolbar(pathname: string): boolean {
     pathname === "/home" ||
     pathname.startsWith("/chat/") ||
     pathname.startsWith("/campaign") ||
+    pathname.startsWith("/new-campaign") ||
     pathname === "/database" ||
     pathname.startsWith("/extensions")
   );

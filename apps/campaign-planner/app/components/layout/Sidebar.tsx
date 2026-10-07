@@ -18,7 +18,7 @@ interface SidebarProps {
 
 const LINKS = [
   { to: "/dispatch", label: "Switch apps", icon: IconChartBar, match: () => false },
-  { to: "/campaigns", label: "Campaigns", icon: IconChartBar, match: (path: string) => path.startsWith("/campaign") },
+  { to: "/campaigns", label: "Campaigns", icon: IconChartBar, match: (path: string) => path.startsWith("/campaign") || path.startsWith("/new-campaign") },
   { to: "/home", label: "Agent", icon: IconMessage, match: (path: string) => path === "/home" || path.startsWith("/chat/") },
   { to: "/settings", label: "Settings", icon: IconSettings, match: (path: string) => path.startsWith("/settings") },
 ];
